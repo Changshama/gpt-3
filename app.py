@@ -19,8 +19,9 @@ def index():
 def coldEmails():
 
     if request.method == 'POST':
-        submission = request.form['Communication']
-        query = "Write a story about a chicken who sells taco: {}".format(submission)
+        # submission = request.form['Communication']
+        # query = "Write a story about a chicken who sells taco: {}".format(submission)
+        query = request.form['Communication']
         openAIAnswerUnformatted = aicontent.openAIQuery(query)
         openAIAnswer = openAIAnswerUnformatted.replace('\n', '<br>')
         # prompt = 'AI Suggestions for {} are:'.format(submission)
@@ -83,14 +84,24 @@ def socialMedia():
 
 
 @app.route('/Travel', methods=["GET", "POST"])
-def businessPitch():
-
+def Travel():    
     if request.method == 'POST':
-        submission = request.form['Travel']
-        query = "{}".format(submission)
+        print(request.get_json())
+        submission = request.form['textprompt']
+        text_query = "{}".format(submission)
+        query = ''
+        prompt = 'AI suggestions are'
+        if request.form['submit_button'] == 'Complete' or request.form['submit_button'] == 'Prompt':
+          query = text_query          
+        if request.form['submit_button'] == 'Verb':
+          query = "Tell me five verbs related to travel"
+          prompt = 'Verbs you can use are'
+        if request.form['submit_button'] == 'Adjective':
+          query = "Tell me five adjectives to describe personality"
+          prompt = 'Adjectives you can use are'
+        print(query)
         openAIAnswerUnformatted = aicontent.openAIQuery(query)
         openAIAnswer = openAIAnswerUnformatted.replace('\n', ' ')
-        prompt = 'AI Suggestions are:'
 
     return render_template('travel.html', **locals())
 

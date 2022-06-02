@@ -4,7 +4,7 @@
 {% block body %}
 <main class="container">
   <div class="bg-light p-5 rounded mt-5">
-    <h1> 💼 Travel ‍💼 </h1>
+    <h1> ✈️ Travel ‍✈️ </h1>
     <p class="lead">
     Write a story about travel. You can ask AI to help you complete a sentence (click Complete), 
     prompt the next thing to write (click Prompt), 
@@ -12,28 +12,53 @@
     </p>
 
     <h2>Write your story here</h2>
+  <!-- action="/Travel" -->
+    <form class="" method="post" id = "query-form">
 
-    <form class="" action="/Travel" method="post">
-
-      <div class="mb-3">
-        <!-- <label class="form-label">Title of Business</label> -->
-        <input type="text" class="form-control" name="Travel" placeholder="eg. Alex travels with his family every summer.">
+      <!-- <div class="mb-3"> -->
+      <div class="row col-12 p-0 m-0">
+        <input type="text" name="textprompt" id="textprompt" placeholder="eg. Alex travels with his family every summer.">
         <div class="form-text">Describe a character, and his or her story of travel.</div>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-lg">Complete</button>
+      <p>
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Complete" />
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Prompt" />
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Verb" />
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Adjective" />
+      </p>
+      <!-- <button type="submit" class="btn btn-primary btn-lg">Complete</button>
       <button type="submit" class="btn btn-primary btn-lg">Prompt</button>
       <button type="submit" class="btn btn-primary btn-lg">Verb</button>
-      <button type="submit" class="btn btn-primary btn-lg">Adjective</button>
+      <button type="submit" class="btn btn-primary btn-lg">Adjective</button> -->
     </form>
-  </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+  
+    <script type="text/javascript">
+      $(document).on('submit','#query-form',function(e)
+                    {
+        console.log('hello');
+        e.preventDefault();
+        $.ajax({
+          type:'POST',
+          url:'Travel',
+          data:{
+            textprompt:$("#textprompt").val()
+          }
+        })
+      });
+    </script>
+
+  </div>
 
   <div class="p-3 rounded">
     <div class="row">
       <div class="col-lg-12">
         <h3 class="text-primary">{{prompt}}</h3>
-        <p class="lead">{{prompt}} {{openAIAnswer}}</p>
+        <p class="lead">{{text_query}} {{openAIAnswer}}</p>
 
       </div>
     </div>
