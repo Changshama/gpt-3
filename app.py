@@ -15,15 +15,16 @@ app.register_error_handler(404, page_not_found)
 def index():
     return render_template('index.html', **locals())
 
-@app.route('/communication', methods=["GET", "POST"])
+@app.route('/Communication', methods=["GET", "POST"])
 def coldEmails():
 
     if request.method == 'POST':
-        submission = request.form['communication']
+        submission = request.form['Communication']
         query = "Write a story about a chicken who sells taco: {}".format(submission)
         openAIAnswerUnformatted = aicontent.openAIQuery(query)
         openAIAnswer = openAIAnswerUnformatted.replace('\n', '<br>')
-        prompt = 'AI Suggestions for {} are:'.format(submission)
+        # prompt = 'AI Suggestions for {} are:'.format(submission)
+        prompt = 'AI Suggestions are:'
 
     return render_template('communication.html', **locals())
 
@@ -37,7 +38,7 @@ def productDescription():
         prompt = 'AI Suggestions for {} are:'.format(query)
         openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
-    return render_template('Shopping.html', **locals())
+    return render_template('shopping.html', **locals())
 
 
 
@@ -51,7 +52,7 @@ def jobDescription():
         prompt = 'AI Suggestions for {} are:'.format(query)
         openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
-    return render_template('Computer.html', **locals())
+    return render_template('computer.html', **locals())
 
 
 
@@ -65,7 +66,7 @@ def tweetIdeas():
         prompt = 'AI Suggestions for {} are:'.format(query)
         openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
-    return render_template('Nature.html', **locals())
+    return render_template('nature.html', **locals())
 
 
 @app.route('/Family', methods=["GET", "POST"])
@@ -78,20 +79,20 @@ def socialMedia():
         prompt = 'AI Suggestions for {} are:'.format(query)
         openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
-    return render_template('Family.html', **locals())
+    return render_template('family.html', **locals())
 
 
 @app.route('/Travel', methods=["GET", "POST"])
 def businessPitch():
 
     if request.method == 'POST':
-        query = request.form['Travel']
-        print(query)
+        submission = request.form['Travel']
+        query = "{}".format(submission)
+        openAIAnswerUnformatted = aicontent.openAIQuery(query)
+        openAIAnswer = openAIAnswerUnformatted.replace('\n', ' ')
+        prompt = 'AI Suggestions are:'
 
-        prompt = 'AI Suggestions for {} are:'.format(query)
-        openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-
-    return render_template('Travel.html', **locals())
+    return render_template('travel.html', **locals())
 
 
 @app.route('/Entertainment', methods=["GET", "POST"])
@@ -104,7 +105,7 @@ def videoIdeas():
         prompt = 'AI Suggestions for {} are:'.format(query)
         openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
-    return render_template('Entertainment.html', **locals())
+    return render_template('entertainment.html', **locals())
 
 
 @app.route('/Music', methods=["GET", "POST"])
@@ -117,7 +118,7 @@ def videoDescription():
         prompt = 'AI Suggestions for {} are:'.format(query)
         openAIAnswer = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
-    return render_template('Music.html', **locals())
+    return render_template('music.html', **locals())
 
 if __name__ == '__main__':
     app.run()
