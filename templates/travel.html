@@ -22,10 +22,10 @@
       </div>
 
       <p>
-      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Complete" />
-      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Prompt" />
-      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Verb" />
-      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" value="Adjective" />
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" id="submit_button" value="Complete" />
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" id="submit_button" value="Prompt" />
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" id="submit_button" value="Verb" />
+      <input type="submit" class="btn btn-primary btn-lg" name="submit_button" id="submit_button" value="Adjective" />
       </p>
       <!-- <button type="submit" class="btn btn-primary btn-lg">Complete</button>
       <button type="submit" class="btn btn-primary btn-lg">Prompt</button>
@@ -47,6 +47,7 @@
           url:'Travel',
           data:{
             textprompt:$("#textprompt").val()
+            submit_button:$("#submit_button").val()
           }
         })
       });
@@ -57,8 +58,9 @@
   <div class="p-3 rounded">
     <div class="row">
       <div class="col-lg-12">
+        <p class="lead">{{text_query}}</p>
         <h3 class="text-primary">{{prompt}}</h3>
-        <p class="lead">{{text_query}} {{openAIAnswer}}</p>
+        <p class="lead">{{openAIAnswer}}</p>
 
       </div>
     </div>

@@ -86,17 +86,19 @@ def socialMedia():
 @app.route('/Travel', methods=["GET", "POST"])
 def Travel():    
     if request.method == 'POST':
-        print(request.get_json())
+        textprompt = request.form.get("textprompt")
+        print(textprompt)
+        print('here we are')
         submission = request.form['textprompt']
-        text_query = "{}".format(submission)
+        text_query = "{}".format(textprompt)
         query = ''
         prompt = 'AI suggestions are'
-        if request.form['submit_button'] == 'Complete' or request.form['submit_button'] == 'Prompt':
+        if request.form.get('submit_button') == 'Complete' or request.form.get('submit_button') == 'Prompt':
           query = text_query          
-        if request.form['submit_button'] == 'Verb':
+        if request.form.get('submit_button') == 'Verb':
           query = "Tell me five verbs related to travel"
           prompt = 'Verbs you can use are'
-        if request.form['submit_button'] == 'Adjective':
+        if request.form.get('submit_button') == 'Adjective':
           query = "Tell me five adjectives to describe personality"
           prompt = 'Adjectives you can use are'
         print(query)
